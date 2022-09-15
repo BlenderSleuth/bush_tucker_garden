@@ -21,9 +21,9 @@ environment:
   sdk: ">=2.17.6 <3.0.0"
 
 dependencies:
+  easy_web_view: ^1.6.0
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
