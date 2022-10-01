@@ -87,7 +87,6 @@ class _BushTuckerNavigationState extends State<BushTuckerNavigation> {
             ListTile(
               title: const Text("About the Garden"),
               onTap: () {
-                print("Tapped Item 1");
                 // Then close the drawer
                 Navigator.pop(context);
               },
@@ -182,6 +181,7 @@ class _MapWidgetState extends State<MapWidget> {
       );
     }
 
+    // https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html
     return InteractiveViewer(
       child: Stack(
         fit: StackFit.expand,
@@ -201,7 +201,41 @@ class PlantList extends StatefulWidget {
 class _PlantListState extends State<PlantList> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemBuilder: (_, rowIdx) {
+        if (rowIdx.isOdd) {
+          return const Divider();
+        }
+        return const ListTile(
+          title: Text("Plant name"),
+          trailing: Icon(
+            Icons.favorite_border,
+            semanticLabel: "Save",
+          ),
+        );
+      },
+    );/*Column(
+      children: [
+        const ListTile(
+          leading: Icon(Icons.search, color: Colors.white, size: 28),
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: "Type in a plant name...",
+              hintStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontStyle: FontStyle.italic,
+              ),
+              border: InputBorder.none,
+            ),
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );*/
   }
 }
 
@@ -220,14 +254,24 @@ class AboutPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(1),
       children: [
-        Center(
-          child: Text(
-            "Dr Beth Gott AM",
-            style: Theme.of(context).textTheme.headline1,
+        SizedBox(
+          height: 50,
+          child: Center(
+            child: Text(
+              "Dr Beth Gott AM",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
           ),
         ),
-        Image.asset("images/Gott1.jpg"),
-        const Text(aboutBethGott),
+        SizedBox(
+          height: 300,
+          child: Image.asset("images/Gott1.jpg"),
+        ),
+        Container(
+          height: 150,
+          padding: const EdgeInsets.all(10),
+          child: const Text(aboutBethGott),
+        ),
       ],
     );
   }
